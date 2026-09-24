@@ -1,4 +1,6 @@
-const API_URL = "http://localhost:8080";
+import { getSession } from "./session";
+
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 // Así viene cada plan en la lista que manda el back
 export type PlanSummary = {
@@ -30,6 +32,37 @@ export type Plan = {
     name: string;
   };
 };
+
+export async function postPlan(
+  name: string,
+  image: string,
+  estimatedPrice: string,
+  address: string,
+  description: string,
+  estimatedTime: string,
+  recomendations: string
+): Promise<string> {
+  const response = await fetch(`${API_URL}/plans`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ 
+      "name": name,
+      "description": description,
+      "estimatedPrice": Number(estimatedPrice),
+      "estimatedTime": Number(estimatedTime),
+      "recomendations": recomendations,
+      "address": address,
+      "image": image,
+      "userId": getSession().id
+    }),
+  });
+  if (!response.ok) {
+    console.log(await response.json());
+    throw new Error("No se pudo crear el plan");
+  }
+
+  return response.json();
+}
 
 // Pide al back la lista de todos los planes
 export async function getPlans(): Promise<PlanSummary[]> {
