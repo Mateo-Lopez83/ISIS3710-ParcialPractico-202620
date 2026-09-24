@@ -1,4 +1,8 @@
+import LocaleSwitcher from "@/components/LocaleSwitch";
+import { useTranslations } from "next-intl";
+
 export default function Home() {
+  const t = useTranslations("HomePage");
   return (
     <div className="flex-1 flex flex-col items-center justify-center bg-slate-50 text-center">
       <span className="bg-blue-100 text-blue-700 text-xs font-bold rounded-full px-4 py-1">
@@ -6,7 +10,7 @@ export default function Home() {
         TU CIUDAD, HOY
       </span>
 
-      <h1 className="text-6xl font-bold text-slate-900 mt-8">¿Buscas planes?</h1>
+      <h1 className="text-6xl font-bold text-slate-900 mt-8">{t("title")}</h1>
 
       <p className="text-lg text-slate-600 max-w-md mt-2">
         Encuentra eventos espontáneos, actividades con amigos y nuevas
@@ -49,6 +53,7 @@ export default function Home() {
         <span className="text-green-700">✓</span> Sin reservas complicadas ni
         ataduras
       </p>
+      
     </div>
   );
 }

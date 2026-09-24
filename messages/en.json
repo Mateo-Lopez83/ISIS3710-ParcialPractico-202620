@@ -1,0 +1,16 @@
+{
+  "HomePage": {
+
+    "title": "Looking for plans?"
+  },
+  "header":{
+    "main":""
+  },
+  "localeSwitcher": {
+    "label": "Change language",
+    "locales": {
+        "en": "English",
+        "es": "Español"
+        }
+    }
+}

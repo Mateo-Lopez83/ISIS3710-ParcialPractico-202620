@@ -4,8 +4,10 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { login } from "@/services/auth";
 import { saveSession } from "@/services/session";
+import { useTranslations } from "next-intl";
 
 export default function LoginPage() {
+  const t = useTranslations("Home");
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
